@@ -14,7 +14,7 @@ function PostsComponent() {
 
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ width: '50%' }}>
+      <div style={{ width: '30%' }}>
         <ol>
           {posts?.map((post) => (
             <div key={post.id}>
@@ -32,7 +32,7 @@ function PostsComponent() {
           ))}
         </ol>
       </div>
-      <div style={{ width: '50%', paddingLeft: '20px' }}>
+      <div style={{ width: '70%', paddingLeft: '20px' }}>
         <Outlet />
       </div>
     </div>
