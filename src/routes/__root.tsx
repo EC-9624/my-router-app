@@ -1,6 +1,9 @@
 import { Link, Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { QueryClient } from '@tanstack/react-query'
+import { AppSidebar } from '@/components/app-sidebar'
+import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
+import SideLayout from '@/components/side-layout'
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -11,35 +14,15 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <>
-      <div className="p-2 flex gap-2 text-lg">
-        <Link
-          to="/"
-          activeProps={{
-            className: 'font-bold',
-          }}
-          activeOptions={{ exact: true }}
-        >
-          Home
-        </Link>{' '}
-        <Link
-          to="/about"
-          activeProps={{
-            className: 'font-bold',
-          }}
-        >
-          About
-        </Link>
-        <Link
-          to="/posts"
-          activeProps={{
-            className: 'font-bold',
-          }}
-        >
-          Posts
-        </Link>
-      </div>
-      <hr />
-      <Outlet />
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+          <SideLayout />
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ">
+            <Outlet />
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
       <TanStackRouterDevtools position="bottom-right" />
     </>
   )
